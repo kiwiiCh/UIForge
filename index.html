@@ -312,6 +312,69 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
   .pg{margin-bottom:10px}
   .proj-actions{flex-direction:column}
 }
+
+/* ===== TOOL MODE BAR ===== */
+.tool-mode-row{display:flex;gap:2px;background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:2px;flex-shrink:0}
+.tmb{width:28px;height:28px;border-radius:4px;border:none;background:transparent;color:var(--muted);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;position:relative;flex-shrink:0}
+.tmb:hover{background:var(--hover);color:var(--text)}
+.tmb.active{background:var(--accent);color:#fff}
+.tmb svg{width:13px;height:13px}
+.tmb[title]:hover::after{content:attr(title);position:absolute;top:calc(100% + 6px);left:50%;transform:translateX(-50%);background:rgba(0,0,0,.92);color:#fff;font-size:10px;padding:3px 7px;border-radius:4px;white-space:nowrap;pointer-events:none;z-index:1000}
+
+/* ===== MULTI-SELECT BOX ===== */
+.sel-box{position:absolute;border:1.5px dashed var(--accent);background:rgba(124,111,239,.07);pointer-events:none;z-index:90}
+.c-el.multi-sel::before{content:'';position:absolute;inset:-2px;border:2px solid #60a5fa;pointer-events:none;border-radius:inherit}
+
+/* ===== SCRIPT PANEL ===== */
+.script-panel{position:absolute;bottom:0;left:0;right:0;background:var(--surface);border-top:2px solid var(--accent);z-index:80;display:flex;flex-direction:column;transition:height .25s cubic-bezier(.4,0,.2,1);height:0;overflow:hidden}
+.script-panel.sp-open{height:340px}
+.script-panel.sp-mini{height:42px}
+.sp-hd{height:42px;display:flex;align-items:center;padding:0 10px;gap:7px;border-bottom:1px solid var(--border);flex-shrink:0;background:var(--panel)}
+.sp-el-tag{background:rgba(124,111,239,.18);border:1px solid rgba(124,111,239,.35);border-radius:5px;padding:2px 8px;font-size:11px;font-weight:600;color:var(--accent);cursor:default}
+.sp-evt-tabs{display:flex;gap:2px;flex:1;overflow-x:auto}
+.sp-evt-tabs::-webkit-scrollbar{height:0}
+.sp-etab{padding:3px 9px;border-radius:4px;border:1px solid var(--border);background:transparent;color:var(--muted);font-size:10px;font-weight:600;cursor:pointer;white-space:nowrap;transition:all .15s}
+.sp-etab:hover{border-color:var(--border2);color:var(--text)}
+.sp-etab.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.sp-toggle{width:28px;height:28px;border-radius:5px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;font-size:14px;flex-shrink:0}
+.sp-toggle:hover{background:var(--hover);color:var(--text)}
+.sp-body{display:flex;flex:1;overflow:hidden}
+.sp-left{flex:1;display:flex;flex-direction:column;min-width:0}
+.sp-hints{display:flex;gap:3px;padding:5px 8px;flex-wrap:wrap;background:var(--bg);border-bottom:1px solid var(--border);flex-shrink:0}
+.sp-hint{padding:2px 7px;background:var(--panel);border:1px solid var(--border);border-radius:4px;color:#7dd3fc;font-size:10px;cursor:pointer;font-family:'Consolas',monospace}
+.sp-hint:hover{border-color:var(--accent)}
+#spCode{flex:1;background:#0d1117;color:#c9d1d9;font-family:'Consolas','Fira Code',monospace;font-size:12.5px;border:none;outline:none;padding:10px 14px;resize:none;line-height:1.65;tab-size:2}
+.sp-right{width:230px;border-left:1px solid var(--border);display:flex;flex-direction:column;background:var(--bg);flex-shrink:0;overflow:hidden}
+.sp-right-hd{padding:7px 10px;font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.sp-conns{flex:1;overflow-y:auto;padding:5px}
+.conn-item{display:flex;align-items:center;gap:5px;padding:5px 8px;background:var(--panel);border:1px solid var(--border);border-radius:5px;margin-bottom:3px;font-size:11px}
+.conn-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+.conn-from{color:var(--accent);flex:1;font-size:10px}
+.conn-arr{color:var(--muted);font-size:13px}
+.conn-to{color:var(--success);flex:1;font-size:10px}
+.conn-del{cursor:pointer;color:var(--muted);font-size:14px;line-height:1}
+.conn-del:hover{color:#ef7070}
+.sp-run-bar{padding:6px 8px;border-top:1px solid var(--border);display:flex;gap:5px;flex-shrink:0}
+
+/* ON-ACTIVATE mode */
+.on-act-source{outline:3px solid #facc15!important;outline-offset:2px}
+.on-act-hint{position:absolute;top:6px;left:50%;transform:translateX(-50%);background:rgba(250,204,21,.95);color:#0a0a00;font-size:12px;font-weight:700;padding:5px 14px;border-radius:20px;pointer-events:none;z-index:200;white-space:nowrap}
+
+/* CANVAS CONNECTION LINES */
+svg.conn-svg{position:absolute;top:0;left:0;pointer-events:none;z-index:60;overflow:visible}
+
+/* ===== 3D SHAPES ===== */
+.s3d-wrap{width:100%;height:100%;display:flex;align-items:center;justify-content:center;perspective:700px;overflow:hidden;cursor:pointer}
+.s3d{position:relative;transform-style:preserve-3d;animation:rot3d 9s linear infinite}
+.s3d:hover,.s3d.paused{animation-play-state:paused}
+@keyframes rot3d{from{transform:rotateX(-18deg) rotateY(0deg)}to{transform:rotateX(-18deg) rotateY(360deg)}}
+.face{position:absolute;backface-visibility:visible}
+
+/* 3D SHAPE TYPES in SHAPES panel */
+.shape-3d-badge{position:absolute;top:2px;right:2px;background:var(--accent);color:#fff;font-size:6px;font-weight:700;padding:1px 3px;border-radius:2px;line-height:1.2}
+
+/* Script node connecting line animation */
+@keyframes dash-anim{to{stroke-dashoffset:-20}}
 </style>
 </head>
 <body>
@@ -441,6 +504,25 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
     <button class="tb-btn icon-only" onclick="undo()" title="Undo (Ctrl+Z)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 14 4 9 9 4"/><path d="M20 20v-7a4 4 0 0 0-4-4H4"/></svg></button>
     <button class="tb-btn icon-only" onclick="redo()" title="Redo (Ctrl+Shift+Z)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 14 20 9 15 4"/><path d="M4 20v-7a4 4 0 0 1 4-4h12"/></svg></button>
     <div class="tb-sep"></div>
+    <!-- TOOL MODES -->
+    <div class="tool-mode-row">
+      <button class="tmb active" id="tm-select" onclick="setToolMode('select')" title="Select (V)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 3l14 9-7 1-4 7z"/></svg>
+      </button>
+      <button class="tmb" id="tm-multi" onclick="setToolMode('multi')" title="Multi-Select (M) — drag to box-select">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="3 2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+      </button>
+      <button class="tmb" id="tm-hand" onclick="setToolMode('hand')" title="Pan / Hand Tool (H)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 11V6a2 2 0 0 0-2-2 2 2 0 0 0-2 2"/><path d="M14 10V4a2 2 0 0 0-2-2 2 2 0 0 0-2 2v2"/><path d="M10 10.5V6a2 2 0 0 0-2-2 2 2 0 0 0-2 2v8"/><path d="M18 11a2 2 0 1 1 4 0v3a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/></svg>
+      </button>
+      <button class="tmb" id="tm-script" onclick="setToolMode('script')" title="Script Tool (S) — click element to add code">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+      </button>
+      <button class="tmb" id="tm-activate" onclick="setToolMode('on-activate')" title="On Activate — connect trigger to target">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      </button>
+    </div>
+    <div class="tb-sep"></div>
     <button class="tb-btn icon-only" onclick="deleteSelected()" title="Delete"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg></button>
     <button class="tb-btn icon-only" onclick="duplicateSelected()" title="Duplicate (Ctrl+D)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
     <button class="tb-btn icon-only" onclick="copyEl()" title="Copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
@@ -482,7 +564,65 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
   <div class="canvas-container" id="canvasContainer" onmousedown="containerMD(event)">
     <div class="canvas-wrapper" id="canvasWrapper">
       <div id="workspace" style="width:800px;height:600px"></div>
+      <svg id="connSvg" style="position:absolute;top:0;left:0;width:800px;height:600px;pointer-events:none;z-index:60;overflow:visible"></svg>
       <canvas id="drawCanvas" width="800" height="600"></canvas>
+    </div>
+  </div>
+
+  <!-- SCRIPT PANEL -->
+  <div class="script-panel" id="scriptPanel">
+    <div class="sp-hd">
+      <span class="sp-el-tag" id="spElTag">No element selected</span>
+      <div class="sp-evt-tabs" id="spEvtTabs">
+        <button class="sp-etab active" data-evt="onClick" onclick="switchSpEvent('onClick')">onClick</button>
+        <button class="sp-etab" data-evt="onHover" onclick="switchSpEvent('onHover')">onHover</button>
+        <button class="sp-etab" data-evt="onLoad" onclick="switchSpEvent('onLoad')">onLoad</button>
+        <button class="sp-etab" data-evt="onKeyPress" onclick="switchSpEvent('onKeyPress')">onKeyPress</button>
+        <button class="sp-etab" data-evt="onActivate" onclick="switchSpEvent('onActivate')">onActivate</button>
+        <button class="sp-etab" data-evt="custom" onclick="switchSpEvent('custom')">+ Custom</button>
+      </div>
+      <button class="sp-toggle" id="spToggleBtn" onclick="toggleScriptPanel()" title="Collapse/Expand">⟩</button>
+      <button class="sp-toggle" onclick="closeScriptPanel()" title="Close">×</button>
+    </div>
+    <div class="sp-body">
+      <div class="sp-left">
+        <div class="sp-hints">
+          <span style="font-size:10px;color:var(--muted);margin-right:4px">Snippets:</span>
+          <button class="sp-hint" onclick="insertSnippet('log')">console.log</button>
+          <button class="sp-hint" onclick="insertSnippet('getEl')">getEl(id)</button>
+          <button class="sp-hint" onclick="insertSnippet('setStyle')">setStyle()</button>
+          <button class="sp-hint" onclick="insertSnippet('animate')">animate()</button>
+          <button class="sp-hint" onclick="insertSnippet('toggle')">toggleClass()</button>
+          <button class="sp-hint" onclick="insertSnippet('fetch')">fetch(url)</button>
+          <button class="sp-hint" onclick="insertSnippet('alert')">alert()</button>
+          <button class="sp-hint" onclick="insertSnippet('navigate')">navigate(url)</button>
+          <button class="sp-hint" onclick="insertSnippet('playAnim')">playAnim(id)</button>
+          <button class="sp-hint" onclick="insertSnippet('if')">if / else</button>
+          <button class="sp-hint" onclick="insertSnippet('loop')">for loop</button>
+          <button class="sp-hint" onclick="insertSnippet('timeout')">setTimeout</button>
+        </div>
+        <textarea id="spCode" spellcheck="false" placeholder="// Script Tool: click an element on canvas to edit its script&#10;&#10;// Available helpers:&#10;// getEl(id)          – get element by canvas ID&#10;// setStyle(id, prop, val) – change style&#10;// playAnim(id)       – play element animation&#10;// hideEl(id)         – hide element&#10;// showEl(id)         – show element&#10;// triggerActivate(id)– fire onActivate on element"></textarea>
+        <div class="sp-run-bar">
+          <button class="btn btn-primary btn-sm" onclick="runScript()">
+            <svg viewBox="0 0 24 24" fill="white" width="11" height="11"><polygon points="5,3 19,12 5,21"/></svg> Run
+          </button>
+          <button class="btn btn-ghost btn-sm" onclick="saveScript()">Save</button>
+          <button class="btn btn-ghost btn-sm" onclick="clearScript()">Clear</button>
+          <button class="btn btn-ghost btn-sm" onclick="testAllConnections()">Test All</button>
+          <span id="spRunMsg" style="font-size:10.5px;color:var(--success);margin-left:5px"></span>
+        </div>
+      </div>
+      <div class="sp-right">
+        <div class="sp-right-hd">
+          <span>Connections</span>
+          <button class="btn btn-ghost btn-sm" onclick="setToolMode('on-activate')" style="font-size:9px;padding:2px 6px">+ Connect</button>
+        </div>
+        <div class="sp-conns" id="spConns"></div>
+        <div style="padding:6px 8px;border-top:1px solid var(--border);flex-shrink:0">
+          <div style="font-size:9px;color:var(--muted);margin-bottom:5px;font-weight:700;text-transform:uppercase;letter-spacing:.5px">All Scripted Elements</div>
+          <div id="spAllScripts" style="display:flex;flex-direction:column;gap:3px;max-height:90px;overflow-y:auto"></div>
+        </div>
+      </div>
     </div>
   </div>
   <div class="status-bar">
@@ -725,6 +865,20 @@ const SHAPES = {
     {t:'icon-box',l:'Icon',i:'<rect x="2" y="2" width="20" height="20" rx="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 12h8M12 8v8" stroke="currentColor" stroke-width="2"/>'},
     {t:'divider',l:'Line',i:'<line x1="3" y1="12" x2="21" y2="12" stroke="currentColor" stroke-width="2"/><circle cx="7" cy="12" r="1" fill="currentColor"/><circle cx="12" cy="12" r="1" fill="currentColor"/><circle cx="17" cy="12" r="1" fill="currentColor"/>'},
   ],
+  shapes3d:[
+    {t:'cube3d',l:'Cube',i:'<rect x="4" y="6" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5"/><polyline points="4,6 8,2 20,2 20,14 16,18" stroke="currentColor" stroke-width="1.5" fill="none"/><line x1="8" y1="2" x2="8" y2="14" stroke="currentColor" stroke-width="1"/><line x1="8" y1="14" x2="4" y2="18" stroke="currentColor" stroke-width="1"/><line x1="8" y1="14" x2="20" y2="14" stroke="currentColor" stroke-width="1"/>'},
+    {t:'sphere3d',l:'Sphere',i:'<circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.5"/><ellipse cx="12" cy="12" rx="9" ry="4" fill="none" stroke="currentColor" stroke-width="1"/><ellipse cx="12" cy="12" rx="4" ry="9" fill="none" stroke="currentColor" stroke-width="1"/>'},
+    {t:'pyramid3d',l:'Pyramid',i:'<polygon points="12,2 22,20 2,20" fill="none" stroke="currentColor" stroke-width="1.5"/><line x1="12" y1="2" x2="15" y2="16" stroke="currentColor" stroke-width="1"/><ellipse cx="12" cy="20" rx="10" ry="3" fill="none" stroke="currentColor" stroke-width="1"/>'},
+    {t:'cylinder3d',l:'Cylinder',i:'<ellipse cx="12" cy="5" rx="9" ry="3" fill="none" stroke="currentColor" stroke-width="1.5"/><ellipse cx="12" cy="19" rx="9" ry="3" fill="none" stroke="currentColor" stroke-width="1.5"/><line x1="3" y1="5" x2="3" y2="19" stroke="currentColor" stroke-width="1.5"/><line x1="21" y1="5" x2="21" y2="19" stroke="currentColor" stroke-width="1.5"/>'},
+    {t:'cone3d',l:'Cone',i:'<ellipse cx="12" cy="19" rx="9" ry="3" fill="none" stroke="currentColor" stroke-width="1.5"/><line x1="3" y1="19" x2="12" y2="3" stroke="currentColor" stroke-width="1.5"/><line x1="21" y1="19" x2="12" y2="3" stroke="currentColor" stroke-width="1.5"/>'},
+    {t:'torus3d',l:'Torus',i:'<ellipse cx="12" cy="12" rx="9" ry="5" fill="none" stroke="currentColor" stroke-width="1.5"/><ellipse cx="12" cy="12" rx="4" ry="2" fill="none" stroke="currentColor" stroke-width="1"/>'},
+    {t:'prism3d',l:'Prism',i:'<polygon points="6,18 18,18 12,6" fill="none" stroke="currentColor" stroke-width="1.5"/><polygon points="2,22 14,22 8,10" fill="none" stroke="currentColor" stroke-width="1" opacity=".5"/><line x1="6" y1="18" x2="2" y2="22" stroke="currentColor" stroke-width="1"/><line x1="18" y1="18" x2="14" y2="22" stroke="currentColor" stroke-width="1"/><line x1="12" y1="6" x2="8" y2="10" stroke="currentColor" stroke-width="1"/>'},
+    {t:'diamond3d',l:'Diamond',i:'<polygon points="12,2 20,9 12,22 4,9" fill="none" stroke="currentColor" stroke-width="1.5"/><line x1="4" y1="9" x2="20" y2="9" stroke="currentColor" stroke-width="1"/><line x1="12" y1="2" x2="12" y2="9" stroke="currentColor" stroke-width="1"/><line x1="12" y1="9" x2="16" y2="16" stroke="currentColor" stroke-width="1" opacity=".5"/>'},
+    {t:'ring3d',l:'Ring',i:'<ellipse cx="12" cy="12" rx="9" ry="4" fill="none" stroke="currentColor" stroke-width="2"/><ellipse cx="12" cy="12" rx="5" ry="2.2" fill="none" stroke="currentColor" stroke-width="1.5"/>'},
+    {t:'capsule3d',l:'Capsule',i:'<rect x="6" y="8" width="12" height="8" fill="none" stroke="currentColor" stroke-width="1.5"/><ellipse cx="12" cy="8" rx="6" ry="3" fill="none" stroke="currentColor" stroke-width="1.5"/><ellipse cx="12" cy="16" rx="6" ry="3" fill="none" stroke="currentColor" stroke-width="1.5"/>'},
+    {t:'wedge3d',l:'Wedge',i:'<polygon points="3,20 21,20 21,8 3,20" fill="none" stroke="currentColor" stroke-width="1.5"/><polygon points="7,16 17,16 17,12" fill="none" stroke="currentColor" stroke-width="1" opacity=".5"/><line x1="3" y1="20" x2="7" y2="16" stroke="currentColor" stroke-width="1"/><line x1="21" y1="8" x2="17" y2="12" stroke="currentColor" stroke-width="1"/>'},
+    {t:'star3d',l:'Star 3D',i:'<polygon points="12,2 14,9 21,9 16,14 18,21 12,17 6,21 8,14 3,9 10,9" fill="none" stroke="currentColor" stroke-width="1.5"/><polygon points="12,5 13.5,10 18,10 14.5,12.5" fill="none" stroke="currentColor" stroke-width="1" opacity=".4"/>'},
+  ],
 };
 
 // ======= ELEMENT DEFAULTS =======
@@ -773,6 +927,19 @@ const DEF = {
   avatar:{w:80,h:80,fill:'#ede9fe',stroke:'transparent',sW:0,r:40},
   'icon-box':{w:80,h:80,fill:'#ede9fe',stroke:'transparent',sW:0,r:12},
   divider:{w:300,h:24,fill:'transparent',stroke:'transparent',sW:0,r:0},
+  // 3D shapes
+  cube3d:{w:160,h:160,fill:'#7c6fef',stroke:'rgba(255,255,255,.25)',sW:1,r:0},
+  sphere3d:{w:160,h:160,fill:'#ef6f8a',stroke:'transparent',sW:0,r:0},
+  pyramid3d:{w:160,h:160,fill:'#4ade80',stroke:'transparent',sW:0,r:0},
+  cylinder3d:{w:140,h:180,fill:'#60a5fa',stroke:'transparent',sW:0,r:0},
+  cone3d:{w:140,h:180,fill:'#f97316',stroke:'transparent',sW:0,r:0},
+  torus3d:{w:160,h:100,fill:'#a78bfa',stroke:'transparent',sW:0,r:0},
+  prism3d:{w:160,h:160,fill:'#facc15',stroke:'transparent',sW:0,r:0},
+  diamond3d:{w:120,h:160,fill:'#22d3ee',stroke:'transparent',sW:0,r:0},
+  ring3d:{w:160,h:80,fill:'#ec4899',stroke:'transparent',sW:0,r:0},
+  capsule3d:{w:100,h:180,fill:'#4ade80',stroke:'transparent',sW:0,r:0},
+  wedge3d:{w:160,h:120,fill:'#f97316',stroke:'transparent',sW:0,r:0},
+  star3d:{w:160,h:160,fill:'#facc15',stroke:'transparent',sW:0,r:0},
 };
 
 // ======= ANIMATIONS =======
@@ -847,6 +1014,7 @@ function buildShapesPanel() {
   const secs = [
     {k:'basic',l:'Basic Shapes'},{k:'ui',l:'UI Elements'},
     {k:'layout',l:'Layout'},{k:'text',l:'Text'},{k:'media',l:'Media'},
+    {k:'shapes3d',l:'3D Shapes ✦'},
   ];
   secs.forEach(sec => {
     const div = document.createElement('div');
@@ -967,6 +1135,19 @@ function buildElInner(e) {
     case 'avatar': return `<div style="${baseS}display:flex;align-items:center;justify-content:center;"><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="${e.tc||'#7c6fef'}" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20v-1a7 7 0 0 1 14 0v1"/></svg></div>`;
     case 'icon-box': return `<div style="${baseS}display:flex;align-items:center;justify-content:center;"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="${e.tc||'#7c6fef'}" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>`;
     case 'divider': return `<div style="width:100%;height:100%;display:flex;align-items:center;"><hr style="width:100%;border:none;border-top:${e.sW||2}px solid ${e.stroke||'#e5e7eb'};margin:0;"></div>`;
+    // ===== 3D SHAPES =====
+    case 'cube3d': return build3D_Cube(e);
+    case 'sphere3d': return build3D_Sphere(e);
+    case 'pyramid3d': return build3D_Pyramid(e);
+    case 'cylinder3d': return build3D_Cylinder(e);
+    case 'cone3d': return build3D_Cone(e);
+    case 'torus3d': return build3D_Torus(e);
+    case 'prism3d': return build3D_Prism(e);
+    case 'diamond3d': return build3D_Diamond(e);
+    case 'ring3d': return build3D_Ring(e);
+    case 'capsule3d': return build3D_Capsule(e);
+    case 'wedge3d': return build3D_Wedge(e);
+    case 'star3d': return build3D_Star(e);
     // SVG shapes
     case 'triangle': return `<svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none"><polygon points="50,5 95,95 5,95" fill="${bg}" stroke="${e.stroke}" stroke-width="${e.sW}"/></svg>`;
     case 'star': return `<svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none"><polygon points="50,5 61,35 95,35 68,57 79,91 50,70 21,91 32,57 5,35 39,35" fill="${bg}" stroke="${e.stroke}" stroke-width="${e.sW}"/></svg>`;
@@ -1032,286 +1213,4 @@ function deleteSelected() {
 
 function duplicateSelected() {
   if(!S.selectedId) return;
-  const orig = getSelEl();
-  if(!orig) return;
-  const copy = JSON.parse(JSON.stringify(orig));
-  copy.id = S.nextId++;
-  copy.x += 18; copy.y += 18;
-  copy.zIndex = S.elements.length;
-  copy.name = `${copy.type}-${copy.id}`;
-  S.elements.push(copy);
-  renderEl(copy);
-  selectEl(copy.id);
-  saveHistory();
-  if(S.currentTab==='layers') updateRightPanel();
-}
-
-function copyEl() {
-  if(!S.selectedId) return;
-  S.clipboard = JSON.parse(JSON.stringify(getSelEl()));
-  notify('Copied!');
-}
-
-function pasteEl() {
-  if(!S.clipboard) return;
-  const copy = JSON.parse(JSON.stringify(S.clipboard));
-  copy.id = S.nextId++;
-  copy.x += 18; copy.y += 18;
-  copy.zIndex = S.elements.length;
-  copy.name = `${copy.type}-${copy.id}`;
-  S.elements.push(copy);
-  renderEl(copy);
-  selectEl(copy.id);
-  saveHistory();
-}
-
-function lockEl() { const e=getSelEl(); if(e){e.locked=!e.locked; notify(e.locked?'Locked':'Unlocked');} }
-function bringForward() { const e=getSelEl(); if(e){e.zIndex=Math.min(e.zIndex+1,S.elements.length); renderEl(e); saveHistory();} }
-function sendBackward() { const e=getSelEl(); if(e){e.zIndex=Math.max(e.zIndex-1,0); renderEl(e); saveHistory();} }
-function bringToFront() { const e=getSelEl(); if(e){e.zIndex=S.elements.length+1; renderEl(e); saveHistory();} }
-function sendToBack() { const e=getSelEl(); if(e){e.zIndex=0; renderEl(e); saveHistory();} }
-function selectAll() { if(S.elements.length>0) selectEl(S.elements[S.elements.length-1].id); }
-
-function setProp(key, val) {
-  const e = getSelEl(); if(!e) return;
-  e[key] = val; renderEl(e);
-  updateStatusBar();
-}
-
-function setPropNoRender(key, val) { const e=getSelEl(); if(e) e[key]=val; }
-
-// ======= DRAG =======
-function elMD(ev, id) {
-  if(ev.button !== 0) return;
-  ev.stopPropagation();
-  const e = S.elements.find(x=>x.id===id);
-  if(e && e.locked) return;
-  selectEl(id);
-  const wsRect = $('#workspace').getBoundingClientRect();
-  S.dragId = id; S.dragging = false;
-  S.dragOX = (ev.clientX - wsRect.left)/S.zoom - e.x;
-  S.dragOY = (ev.clientY - wsRect.top)/S.zoom - e.y;
-  document.addEventListener('mousemove', dragMV);
-  document.addEventListener('mouseup', dragUP);
-}
-
-function dragMV(ev) {
-  if(!S.dragId) return;
-  S.dragging = true;
-  const e = S.elements.find(x=>x.id===S.dragId);
-  if(!e) return;
-  const wsRect = $('#workspace').getBoundingClientRect();
-  let nx = (ev.clientX-wsRect.left)/S.zoom - S.dragOX;
-  let ny = (ev.clientY-wsRect.top)/S.zoom - S.dragOY;
-  if(S.gridOn) { nx=Math.round(nx/10)*10; ny=Math.round(ny/10)*10; }
-  e.x=clamp(nx,0,S.canvasW-e.w); e.y=clamp(ny,0,S.canvasH-e.h);
-  const dom = $('#workspace').querySelector(`[data-id="${S.dragId}"]`);
-  if(dom) { dom.style.left=e.x+'px'; dom.style.top=e.y+'px'; }
-  updateStatusBar();
-  if($('#pi-x')) { $('#pi-x').value=Math.round(e.x); $('#pi-y').value=Math.round(e.y); }
-}
-
-function dragUP() {
-  if(S.dragging && S.dragId) saveHistory();
-  S.dragId=null; S.dragging=false;
-  document.removeEventListener('mousemove',dragMV);
-  document.removeEventListener('mouseup',dragUP);
-}
-
-// ======= RESIZE =======
-function rsMD(ev, handle) {
-  ev.stopPropagation(); ev.preventDefault();
-  const e = getSelEl(); if(!e) return;
-  S.resizing=true; S.resHandle=handle;
-  S.rsX=ev.clientX; S.rsY=ev.clientY;
-  S.rsW=e.w; S.rsH=e.h; S.rsL=e.x; S.rsT=e.y;
-  document.addEventListener('mousemove',rsMV);
-  document.addEventListener('mouseup',rsUP);
-}
-
-function rsMV(ev) {
-  if(!S.resizing) return;
-  const e=getSelEl(); if(!e) return;
-  const dx=(ev.clientX-S.rsX)/S.zoom, dy=(ev.clientY-S.rsY)/S.zoom;
-  const h=S.resHandle;
-  let nx=S.rsL,ny=S.rsT,nw=S.rsW,nh=S.rsH;
-  if(h.includes('r')) nw=Math.max(20,S.rsW+dx);
-  if(h.includes('l')) { nw=Math.max(20,S.rsW-dx); nx=S.rsL+(S.rsW-nw); }
-  if(h.includes('b')) nh=Math.max(20,S.rsH+dy);
-  if(h.includes('t')) { nh=Math.max(20,S.rsH-dy); ny=S.rsT+(S.rsH-nh); }
-  if(ev.shiftKey&&h.length===2) { const rat=S.rsW/S.rsH; if(Math.abs(dx)>Math.abs(dy)) nh=nw/rat; else nw=nh*rat; }
-  e.x=nx;e.y=ny;e.w=nw;e.h=nh;
-  const dom=$('#workspace').querySelector(`[data-id="${e.id}"]`);
-  if(dom){dom.style.left=nx+'px';dom.style.top=ny+'px';dom.style.width=nw+'px';dom.style.height=nh+'px';}
-  if($('#pi-x')){$('#pi-x').value=Math.round(nx);$('#pi-y').value=Math.round(ny);$('#pi-w').value=Math.round(nw);$('#pi-h').value=Math.round(nh);}
-  updateStatusBar();
-}
-
-function rsUP() {
-  if(S.resizing) saveHistory();
-  S.resizing=false;
-  document.removeEventListener('mousemove',rsMV);
-  document.removeEventListener('mouseup',rsUP);
-}
-
-// ======= RIGHT PANEL =======
-function switchTab(tab) {
-  S.currentTab = tab;
-  $$('.rtab').forEach((t,i)=>{
-    const tabs=['props','style','text','anim','interact','layers'];
-    t.classList.toggle('active', tabs[i]===tab);
-  });
-  updateRightPanel();
-}
-
-function updateRightPanel() {
-  const c = $('#propsContent');
-  const e = getSelEl();
-  
-  if(S.currentTab === 'layers') {
-    c.classList.remove('hidden');
-    $('#noSelHint').classList.add('hidden');
-    renderLayersTab(c);
-    return;
-  }
-  
-  if(!e) { c.innerHTML=''; return; }
-  
-  switch(S.currentTab) {
-    case 'props': renderPropsTab(c,e); break;
-    case 'style': renderStyleTab(c,e); break;
-    case 'text': renderTextTab(c,e); break;
-    case 'anim': renderAnimTab(c,e); break;
-    case 'interact': renderInteractTab(c,e); break;
-  }
-}
-
-function renderPropsTab(c, e) {
-  c.innerHTML = `
-<div class="pg">
-  <div class="pg-label">Position</div>
-  <div class="xy-g">
-    <div class="xy-i"><div class="xy-l">X</div><input type="number" class="ni" id="pi-x" value="${Math.round(e.x)}" oninput="setProp('x',clamp(+this.value,0,S.canvasW-getSelEl().w))"></div>
-    <div class="xy-i"><div class="xy-l">Y</div><input type="number" class="ni" id="pi-y" value="${Math.round(e.y)}" oninput="setProp('y',clamp(+this.value,0,S.canvasH-getSelEl().h))"></div>
-  </div>
-</div>
-<div class="pg">
-  <div class="pg-label">Size</div>
-  <div class="xy-g">
-    <div class="xy-i"><div class="xy-l">W</div><input type="number" class="ni" id="pi-w" value="${Math.round(e.w)}" oninput="setProp('w',Math.max(10,+this.value))"></div>
-    <div class="xy-i"><div class="xy-l">H</div><input type="number" class="ni" id="pi-h" value="${Math.round(e.h)}" oninput="setProp('h',Math.max(10,+this.value))"></div>
-  </div>
-</div>
-<div class="pg">
-  <div class="pg-label">Transform</div>
-  <div class="pr"><span class="pl">Rotation</span><input type="number" class="pi" value="${e.rotation||0}" min="-360" max="360" oninput="setProp('rotation',+this.value)"></div>
-  <div class="pr"><span class="pl">Radius</span><input type="number" class="pi" value="${e.r||0}" min="0" max="500" oninput="setProp('r',+this.value)"></div>
-  <div class="pr"><span class="pl">Opacity</span><input type="range" class="prop-slider" value="${e.opacity||1}" min="0" max="1" step="0.01" oninput="setProp('opacity',+this.value)" style="flex:1;height:4px;-webkit-appearance:none;background:var(--border);border-radius:2px;outline:none;cursor:pointer"></div>
-  <div class="pr"><span class="pl">Blur</span><input type="number" class="pi" value="${e.blur||0}" min="0" max="50" oninput="setProp('blur',+this.value)"></div>
-</div>
-<div class="pg">
-  <div class="pg-label">Align on Canvas</div>
-  <div class="align-row">
-    <button class="al-btn" onclick="alignEl('left')" title="Left"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="5" x2="3" y2="19"/><rect x="3" y="8" width="9" height="3" rx="1"/><rect x="3" y="13" width="14" height="3" rx="1"/></svg></button>
-    <button class="al-btn" onclick="alignEl('hcenter')" title="H Center"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="3" x2="12" y2="21"/><rect x="4" y="8" width="16" height="3" rx="1"/><rect x="7" y="13" width="10" height="3" rx="1"/></svg></button>
-    <button class="al-btn" onclick="alignEl('right')" title="Right"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="21" y1="5" x2="21" y2="19"/><rect x="12" y="8" width="9" height="3" rx="1"/><rect x="7" y="13" width="14" height="3" rx="1"/></svg></button>
-    <button class="al-btn" onclick="alignEl('top')" title="Top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="3" x2="19" y2="3"/><rect x="8" y="3" width="3" height="9" rx="1"/><rect x="13" y="3" width="3" height="14" rx="1"/></svg></button>
-    <button class="al-btn" onclick="alignEl('vcenter')" title="V Center"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><rect x="8" y="4" width="3" height="16" rx="1"/><rect x="13" y="7" width="3" height="10" rx="1"/></svg></button>
-    <button class="al-btn" onclick="alignEl('bottom')" title="Bottom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="21" x2="19" y2="21"/><rect x="8" y="12" width="3" height="9" rx="1"/><rect x="13" y="7" width="3" height="14" rx="1"/></svg></button>
-  </div>
-</div>
-<div class="pg">
-  <div class="pg-label">Name</div>
-  <div class="pr"><input type="text" class="pi" value="${e.name}" oninput="setPropNoRender('name',this.value)"></div>
-</div>`;
-}
-
-function renderStyleTab(c, e) {
-  c.innerHTML = `
-<div class="pg">
-  <div class="pg-label">Fill</div>
-  <div class="pr"><span class="pl">Color</span><input type="color" class="pi" value="${e.fill&&e.fill!=='transparent'?e.fill:'#7c6fef'}" oninput="setProp('fill',this.value)"><button class="btn btn-ghost btn-sm" onclick="setProp('fill','transparent')" style="font-size:10px;padding:2px 6px">None</button></div>
-  <div class="pr"><span class="pl">Gradient</span>
-    <select class="ps" onchange="applyGrad(this.value)">
-      <option value="">None</option>
-      <option value="lr">Left → Right</option>
-      <option value="tb">Top → Bottom</option>
-      <option value="dia">Diagonal</option>
-      <option value="rad">Radial</option>
-    </select>
-  </div>
-  <div id="grad2col" class="pr" style="display:none"><span class="pl">End Color</span><input type="color" id="gradEnd" value="#ef6f8a" oninput="updateGrad()"></div>
-</div>
-<div class="pg">
-  <div class="pg-label">Stroke</div>
-  <div class="pr"><span class="pl">Color</span><input type="color" class="pi" value="${e.stroke&&e.stroke!=='transparent'?e.stroke:'#000000'}" oninput="setProp('stroke',this.value)"></div>
-  <div class="pr"><span class="pl">Width</span><input type="number" class="pi" value="${e.sW||0}" min="0" max="30" oninput="setProp('sW',+this.value)"></div>
-  <div class="pr"><span class="pl">Style</span><select class="ps" onchange="setPropNoRender('dashArr',this.value);renderEl(getSelEl())"><option value="">Solid</option><option value="6,3">Dashed</option><option value="2,3">Dotted</option><option value="10,5,2,5">Dash-Dot</option></select></div>
-</div>
-<div class="pg">
-  <div class="pg-label">Shadow</div>
-  <div class="pr"><span class="pl">Shadow</span><input type="text" class="pi" value="${e.shadow||''}" placeholder="0 4px 12px rgba(0,0,0,.2)" oninput="setProp('shadow',this.value)"></div>
-  <div style="display:flex;gap:3px;flex-wrap:wrap">
-    ${[['Soft','0 2px 8px rgba(0,0,0,.15)'],['Deep','0 8px 24px rgba(0,0,0,.25)'],['Hard','3px 3px 0 rgba(0,0,0,.8)'],['Glow','0 0 18px rgba(124,111,239,.7)'],['None','']].map(([l,v])=>`<button class="btn btn-ghost btn-sm" onclick="setProp('shadow','${v}')">${l}</button>`).join('')}
-  </div>
-</div>
-<div class="pg">
-  <div class="pg-label">Bg Image</div>
-  <div class="pr"><input type="text" class="pi" placeholder="Image URL…" oninput="setBgImg(this.value)"></div>
-  <div class="pr"><span class="pl">Size</span><select class="ps" onchange="setBgSz(this.value)"><option value="cover">Cover</option><option value="contain">Contain</option><option value="auto">Auto</option></select></div>
-</div>
-<div class="pg">
-  <div class="pg-label">Effects</div>
-  <div class="pr"><span class="pl">Blend</span><select class="ps" onchange="applyBlend(this.value)"><option value="normal">Normal</option><option value="multiply">Multiply</option><option value="screen">Screen</option><option value="overlay">Overlay</option><option value="darken">Darken</option><option value="lighten">Lighten</option><option value="color-dodge">Color Dodge</option><option value="difference">Difference</option></select></div>
-  <div class="pr"><span class="pl">Blur</span><input type="number" class="pi" value="${e.blur||0}" min="0" max="50" oninput="setProp('blur',+this.value)"></div>
-</div>`;
-}
-
-function renderTextTab(c, e) {
-  c.innerHTML = `
-<div class="pg">
-  <div class="pg-label">Content</div>
-  <div class="pr"><textarea class="pi" style="height:56px;resize:vertical;padding:6px;line-height:1.4" id="textContent" oninput="setProp('text',this.value)">${e.text||''}</textarea></div>
-</div>
-<div class="pg">
-  <div class="pg-label">Font</div>
-  <div class="pr"><span class="pl">Size</span><input type="number" class="pi" value="${e.fs||14}" min="6" max="120" oninput="setProp('fs',+this.value)"></div>
-  <div class="pr"><span class="pl">Color</span><input type="color" class="pi" value="${e.tc||'#000000'}" oninput="setProp('tc',this.value)"></div>
-  <div class="pr"><span class="pl">Weight</span><select class="ps" onchange="setProp('fw',this.value)"><option value="300" ${e.fw==='300'?'selected':''}>Light</option><option value="400" ${(!e.fw||e.fw==='400')?'selected':''}>Normal</option><option value="500" ${e.fw==='500'?'selected':''}>Medium</option><option value="600" ${e.fw==='600'?'selected':''}>SemiBold</option><option value="700" ${e.fw==='700'?'selected':''}>Bold</option><option value="800" ${e.fw==='800'?'selected':''}>ExtraBold</option><option value="900" ${e.fw==='900'?'selected':''}>Black</option></select></div>
-  <div class="pr"><span class="pl">Style</span><select class="ps" onchange="setProp('fStyle',this.value)"><option value="normal">Normal</option><option value="italic">Italic</option></select></div>
-  <div class="pr"><span class="pl">Family</span><select class="ps" onchange="setProp('ff',this.value)">
-    <option value="inherit">Default</option><option value="Georgia,serif">Georgia</option><option value="Times New Roman,serif">Times New Roman</option>
-    <option value="monospace">Monospace</option><option value="Courier New,monospace">Courier New</option>
-    <option value="cursive">Cursive</option><option value="fantasy">Fantasy</option>
-    <option value="Impact,sans-serif">Impact</option><option value="Trebuchet MS,sans-serif">Trebuchet</option>
-  </select></div>
-</div>
-<div class="pg">
-  <div class="pg-label">Alignment</div>
-  <div class="ta-row">
-    <button class="ta-btn ${(e.ta||'left')==='left'?'active':''}" onclick="setProp('ta','left');this.closest('.ta-row').querySelectorAll('.ta-btn').forEach(b=>b.classList.remove('active'));this.classList.add('active')">Left</button>
-    <button class="ta-btn ${e.ta==='center'?'active':''}" onclick="setProp('ta','center');this.closest('.ta-row').querySelectorAll('.ta-btn').forEach(b=>b.classList.remove('active'));this.classList.add('active')">Center</button>
-    <button class="ta-btn ${e.ta==='right'?'active':''}" onclick="setProp('ta','right');this.closest('.ta-row').querySelectorAll('.ta-btn').forEach(b=>b.classList.remove('active'));this.classList.add('active')">Right</button>
-  </div>
-</div>
-<div class="pg">
-  <div class="pg-label">Line Spacing</div>
-  <div class="pr"><span class="pl">Line H</span><input type="number" class="pi" value="${e.lineH||1.5}" min=".8" max="4" step=".1" oninput="setProp('lineH',+this.value)"></div>
-  <div class="pr"><span class="pl">Spacing</span><input type="number" class="pi" value="${e.letterS||0}" min="-5" max="20" step=".5" oninput="setProp('letterS',+this.value)"></div>
-</div>`;
-}
-
-function renderAnimTab(c, e) {
-  c.innerHTML = `
-<div class="pg">
-  <div class="pg-label">Animation Type</div>
-  <div class="anim-grid">
-    ${ANIMS.map(a=>`<div class="anim-card ${e.animation===a.id?'sel':''}" onclick="setAnim('${a.id}')"><span style="font-size:15px">${a.icon}</span><span>${a.l}</span></div>`).join('')}
-    <div class="anim-card ${!e.animation?'sel':''}" onclick="setAnim('')"><span style="font-size:15px">✕</span><span>None</span></div>
-  </div>
-</div>
-<div class="pg">
-  <div class="pg-label">Settings</div>
-  <div class="pr"><span class="pl">Duration</span><input type="number" class="pi" value="${e.animDur||.8}" min=".1" max="10" step=".1" oninput="setPropNoRender('animDur',+this.value)" style="font-family:monospace"><span style="font-size:10px;color:var(--muted)">s</span></div>
-  <div class="pr"><span class="pl">Delay</span><input type="number" class="pi" value="${e.animDelay||0}" min="0" max="10" step=".1" oninput="setPropNoRender('animDelay',+this.value)" style="font-family:monospace"><span style="font-size:10px;color:var(--muted)">s</span></div>
-  <d
+  const o
